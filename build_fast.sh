@@ -11,6 +11,11 @@ echo '--------------------------------------------------'
 echo 'sudo apt-get install -y default-libmysqlclient-dev'
 sudo apt-get install -y default-libmysqlclient-dev
 
+# Needed for certain tests
+echo '-----------------------------------'
+echo 'sudo apt-get install -y firefox-esr'
+sudo apt-get install -y firefox-esr
+
 # PostgreSQL
 DB_NAME='octobox_test'
 DB_USERNAME='winner1'
@@ -23,6 +28,8 @@ sh pg-start.sh
 echo '--------------'
 echo 'bundle install'
 bundle install
+
+bash install_geckodriver.sh
 
 echo '------------------------------'
 echo 'BEGIN: setting up the database'

@@ -8,8 +8,7 @@ echo '----------------'
 echo 'rails db:migrate'
 rails db:migrate
 
-# NOTE: The Spring server may distort the test coverage results from MiniTest and SimpleCov.
-echo '---------------------------'
-echo 'DISABLE_SPRING=1 rails test'
-DISABLE_SPRING=1 rails test
+echo '----------------------------------------------------------------------------'
+echo 'RAILS_ENV=test bundle exec rake --trace rubocop db:migrate test:skip_visuals'
+RAILS_ENV=test bundle exec rake --trace rubocop db:migrate test:skip_visuals
 
