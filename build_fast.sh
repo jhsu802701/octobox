@@ -2,6 +2,10 @@
 
 sh config_env.sh
 
+echo '-----------------------'
+echo 'apt-get purge -y nodejs'
+sudo apt-get purge -y nodejs
+
 echo '-------------------'
 echo 'sudo apt-get update'
 sudo apt-get update
