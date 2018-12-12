@@ -2,24 +2,6 @@
 
 sh config_env.sh
 
-echo '-----------------------'
-echo 'apt-get purge -y nodejs'
-sudo apt-get purge -y nodejs
-
-echo '-------------------'
-echo 'sudo apt-get update'
-sudo apt-get update
-
-# Needed for MySQL
-echo '--------------------------------------------------'
-echo 'sudo apt-get install -y default-libmysqlclient-dev'
-sudo apt-get install -y default-libmysqlclient-dev
-
-# Needed for certain tests
-echo '-----------------------------------'
-echo 'sudo apt-get install -y firefox-esr'
-sudo apt-get install -y firefox-esr
-
 # PostgreSQL
 DB_NAME='octobox_test'
 DB_USERNAME='winner1'
