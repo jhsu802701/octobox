@@ -77,3 +77,10 @@ group :production do
   gem 'lograge'
   gem 'puma_worker_killer'
 end
+
+# BEGIN: gems for test_code.sh (not in master branch)
+group :development, :testing do
+  gem 'bundler-audit', '0.6.0'
+  gem 'gemsurance', '0.9.0'
+end
+# END: gems for test_code.sh (not in master branch)
