@@ -45,7 +45,7 @@ echo '6. Use "octobox" as your application name.'
 echo '7. Use "http://localhost:3000/" as the Homepage URL.'
 echo '   NOTE: If you are using a non-zero offset for the port numbers,'
 echo '   the port number will be different from 3000.'
-echo '8. Use "http://localhost:3000/users/auth/github/callback" as'
+echo '8. Use "http://localhost:3000/auth/github/callback" as'
 echo '   the Authorization callback URL.'
 echo '   NOTE: If you are using a non-zero offset for the port numbers,'
 echo '   the port number will be different from 3000.'
@@ -59,6 +59,6 @@ read GITHUB_ID
 echo 'Enter the GitHub App Client Secret:'
 read GITHUB_SECRET
 
-echo GITHUB_APP_ID=$GITHUB_ID > .env
-echo GITHUB_APP_SECRET=$GITHUB_SECRET >> .env
+echo GITHUB_CLIENT_ID=$GITHUB_ID > .env
+echo GITHUB_CLIENT_SECRET=$GITHUB_SECRET >> .env
 echo PORT=3000 >> .env
