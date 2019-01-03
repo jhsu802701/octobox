@@ -174,7 +174,6 @@ var Octobox = (function() {
     .done(function () {
       rows.removeClass("blur-action");
       rows.removeClass("active");
-      uncheckAll();
       updateFavicon();
     })
     .fail(function(){
@@ -286,19 +285,27 @@ var Octobox = (function() {
     // handle shift+click multiple check
     var notificationCheckboxes = $(".notification-checkbox .custom-checkbox input");
     $(".notification-checkbox .custom-checkbox").click(function(e) {
+      e.preventDefault();
+      window.getSelection().removeAllRanges(); // remove all text selected
+
       if(!lastCheckedNotification) {
+        // No notifications selected
         lastCheckedNotification = $(this).find("input");
+        lastCheckedNotification.prop("checked", !lastCheckedNotification.prop("checked")).trigger('change');
         return;
       }
 
       if(e.shiftKey) {
         var start = notificationCheckboxes.index($(this).find("input"));
         var end = notificationCheckboxes.index(lastCheckedNotification);
-        var selected = notificationCheckboxes.slice(Math.min(start,end), Math.max(start,end)+ 1)
-        selected.prop("checked", lastCheckedNotification.prop("checked"));
+        var selected = notificationCheckboxes.slice(Math.min(start,end), Math.max(start,end) + 1)
+        selected.prop("checked", lastCheckedNotification.prop("checked")).trigger('change');
+        lastCheckedNotification = $(this).find("input");
+        return;
       }
 
       lastCheckedNotification = $(this).find("input");
+      lastCheckedNotification.prop("checked", !lastCheckedNotification.prop("checked")).trigger('change');
     });
   };
 
@@ -498,7 +505,8 @@ var Octobox = (function() {
   }
 
   var markCurrent = function() {
-    getCurrentRow().find("input[type=checkbox]").click();
+    currentRow = getCurrentRow().find("input[type=checkbox]");
+    $(currentRow).prop("checked", !$(currentRow).prop("checked")).trigger('change');
   };
 
   var resetCursorAfterRowsRemoved = function(ids) {
