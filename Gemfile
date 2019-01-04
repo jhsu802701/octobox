@@ -84,3 +84,10 @@ group :development, :testing do
   gem 'gemsurance', '0.9.0'
 end
 # END: gems for test_code.sh (not in master branch)
+
+# BEGIN: for outline.sh (not in master branch)
+group :development do
+  gem 'railroady', '1.5.3' # Generates block diagrams
+  gem 'rails-erd', '1.5.2' # Generates block diagrams
+end
+# END: for outline.sh (not in master branch)
