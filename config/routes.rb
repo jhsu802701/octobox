@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     member do
       get  :show
       post :star
-      post :mark_read
+      get  :expand_comments
     end
   end
 
@@ -58,7 +58,7 @@ Rails.application.routes.draw do
 
   post '/hooks/github', to: 'hooks#create'
 
-  if Octobox.octobox_io?
+  if Octobox.io?
     get '/pricing', to: 'pages#pricing'
     get '/privacy', to: 'pages#privacy'
     get '/terms', to: 'pages#terms'
