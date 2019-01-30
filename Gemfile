@@ -79,4 +79,5 @@ group :production do
   gem 'puma_worker_killer'
 end
 
+# For Codecov, not in upstream repository
 gem 'codecov', '0.1.14', require: false, group: :test
