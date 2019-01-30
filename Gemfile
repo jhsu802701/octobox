@@ -79,7 +79,6 @@ group :production do
   gem 'puma_worker_killer'
 end
 
-<<<<<<< HEAD
 # BEGIN: gems for test_code.sh (not in master branch)
 group :development, :testing do
   gem 'bundler-audit', '0.6.0'
