@@ -3,6 +3,16 @@
 require "simplecov"
 SimpleCov.start 'rails'
 
+# BEGIN: Codecov
+# Run Codecov ONLY in continuous integration.
+# Running Codecov suppresses the display of the test coverage percentage
+# in the terminal screen output.
+if ENV.include? 'CODECOV_TOKEN'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
+# END: Codecov
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'

@@ -78,3 +78,5 @@ group :production do
   gem 'lograge'
   gem 'puma_worker_killer'
 end
+
+gem 'codecov', '0.1.14', require: false, group: :test
