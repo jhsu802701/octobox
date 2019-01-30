@@ -79,6 +79,7 @@ group :production do
   gem 'puma_worker_killer'
 end
 
+<<<<<<< HEAD
 # BEGIN: gems for test_code.sh (not in master branch)
 group :development, :testing do
   gem 'bundler-audit', '0.6.0'
@@ -93,5 +94,5 @@ group :development do
 end
 # END: for outline.sh (not in master branch)
 
-# For Codecov badge, not in master branch
+# For Codecov, not in upstream repository
 gem 'codecov', '0.1.14', require: false, group: :test
