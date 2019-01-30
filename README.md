@@ -26,6 +26,7 @@ Octobox helps you manage your GitHub notifications efficiently so you can spend 
 [![OpenCollective](https://opencollective.com/octobox/sponsors/badge.svg)](#sponsors)
 [![Open Source Helpers](https://www.codetriage.com/andrew/github-inbox/badges/users.svg)](https://www.codetriage.com/andrew/github-inbox)
 [![license](https://img.shields.io/github/license/octobox/octobox.svg)](LICENSE.txt)
+[![codecov](https://codecov.io/gh/jhsu802701/octobox/branch/master/graph/badge.svg)](https://codecov.io/gh/jhsu802701/octobox)
 
 ## Why is this a thing?
 
