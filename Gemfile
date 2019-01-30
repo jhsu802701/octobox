@@ -92,3 +92,6 @@ group :development do
   gem 'rails-erd', '1.5.2' # Generates block diagrams
 end
 # END: for outline.sh (not in master branch)
+
+# For Codecov badge, not in master branch
+gem 'codecov', '0.1.14', require: false, group: :test

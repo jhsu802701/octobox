@@ -90,6 +90,10 @@ GEM
     choice (0.2.0)
     chronic_duration (0.10.6)
       numerizer (~> 0.1.1)
+    codecov (0.1.14)
+      json
+      simplecov
+      url
     coderay (1.1.2)
     commonmarker (0.18.2)
       ruby-enum (~> 0.5)
@@ -401,6 +405,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.4.1)
     uniform_notifier (1.12.1)
+    url (0.3.2)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -434,6 +439,7 @@ DEPENDENCIES
   bundler-audit (= 0.6.0)
   byebug
   capybara
+  codecov (= 0.1.14)
   commonmarker
   dotenv-rails
   factory_bot
@@ -493,4 +499,4 @@ RUBY VERSION
    ruby 2.6.0p0
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
