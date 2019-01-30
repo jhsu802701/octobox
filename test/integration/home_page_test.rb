@@ -21,6 +21,9 @@ class HomePageTest < ActionDispatch::IntegrationTest
   end
 
   test 'main page with login is notifications page' do
+    stub_notifications_request
+    stub_comments_requests
+    stub_fetch_subject_enabled(value: false)
     @user = create(:user)
     sign_in_as(@user)
     get root_path
