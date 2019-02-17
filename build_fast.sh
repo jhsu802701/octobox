@@ -39,8 +39,6 @@ echo '--------------'
 echo 'bundle install'
 bundle install
 
-bash install_geckodriver.sh
-
 echo '------------------------------'
 echo 'BEGIN: setting up the database'
 echo '------------------------------'
