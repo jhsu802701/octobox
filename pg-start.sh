@@ -6,3 +6,8 @@
 echo '-----------------------------'
 echo 'sudo service postgresql start'
 sudo service postgresql start
+
+# This app also requires MySQL
+echo '------------------------'
+echo 'sudo service mysql start'
+sudo service mysql start
