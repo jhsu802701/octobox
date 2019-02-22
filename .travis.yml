@@ -17,10 +17,6 @@ services:
 before_script:
   - psql -c 'create database "octobox_test";' -U postgres || true
   - mysql -u root -e 'create database octobox_test;' || true
-  - psql -c '\l;' -U postgres
-  - psql -c '\du;' -U postgres
-  - mysql -u root -e 'show databases;'
-  - mysql -u root -e 'SELECT user,host,password FROM mysql.user;'
 
 script:
   - RAILS_ENV=test bundle exec rake --trace rubocop db:migrate test:skip_visuals
