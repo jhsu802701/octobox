@@ -152,6 +152,7 @@ GEM
       minitest (>= 3.0)
     hashdiff (0.3.8)
     hashie (3.6.0)
+    hirefire-resource (0.7.1)
     i18n (1.5.3)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.2)
@@ -333,7 +334,7 @@ GEM
     rubyzip (1.2.2)
     rufus-scheduler (3.5.2)
       fugit (~> 1.1, >= 1.1.5)
-    safe_yaml (1.0.4)
+    safe_yaml (1.0.5)
     sassc (2.0.0)
       ffi (~> 1.9.6)
       rake
@@ -451,6 +452,7 @@ DEPENDENCIES
   git
   guard
   guard-minitest
+  hirefire-resource
   jbuilder
   jquery-rails
   jwt
