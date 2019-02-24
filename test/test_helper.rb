@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 require "simplecov"
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  track_files "{lib}/*.rb" # Not automatically covered under the rails profile
+end
+
+# From https://github.com/colszowka/simplecov/issues/401
+Dir[Rails.root.join('lib/*.rb')].each {|file| load file }
 
 # BEGIN: Codecov
 # Run Codecov ONLY in continuous integration.
