@@ -26,38 +26,52 @@ if [ ! -f .env ]; then
   sh config_env.sh
 fi
 
-# PostgreSQL
-DB_NAME='octobox_test'
-DB_USERNAME='winner1'
-DB_PASSWORD='long_way_stinks'
-echo "OCTOBOX_DATABASE_NAME=${DB_NAME}" >> .env
-echo "OCTOBOX_DATABASE_USERNAME=${DB_USERNAME}" >> .env
-echo "OCTOBOX_DATABASE_PASSWORD=${DB_PASSWORD}" >> .env
+PG_VERSION="$(ls /etc/postgresql)"
+PG_HBA="/etc/postgresql/$PG_VERSION/main/pg_hba.conf"
+echo '-------------------'
+echo "Configuring $PG_HBA"
+
+sudo bash -c "echo '# TYPE  DATABASE        USER            ADDRESS                 METHOD' > $PG_HBA"
+sudo bash -c "echo '' >> $PG_HBA"
+sudo bash -c "echo '# Allow postgres user to connect to database without password' >> $PG_HBA"
+sudo bash -c "echo 'local   all             postgres                                trust' >> $PG_HBA"
+sudo bash -c "echo '' >> $PG_HBA"
+sudo bash -c "echo 'local   all             all                                     trust' >> $PG_HBA"
+sudo bash -c "echo '' >> $PG_HBA"
+sudo bash -c "echo '# Full access to 0.0.0.0 (localhost) for pgAdmin host machine access' >> $PG_HBA"
+sudo bash -c "echo '# IPv4 local connections:' >> $PG_HBA"
+sudo bash -c "echo 'host    all             all             0.0.0.0/0               trust' >> $PG_HBA"
+sudo bash -c "echo '' >> $PG_HBA"
+sudo bash -c "echo '# IPv6 local connections:' >> $PG_HBA"
+sudo bash -c "echo 'host    all             all             ::1/128                 trust' >> $PG_HBA"
 
 sh pg-start.sh
 echo '--------------'
 echo 'bundle install'
 bundle install
 
-echo '------------------------------'
-echo 'BEGIN: setting up the database'
-echo '------------------------------'
+bash install_geckodriver.sh # For visual tests
 
-psql_command="CREATE ROLE ${DB_USERNAME} WITH CREATEDB LOGIN PASSWORD '${DB_PASSWORD}';"
-sudo -u postgres psql -c"$psql_command"
-wait
+# MySQL
+sudo mysql -u root -e 'create database octobox_development;'
+sudo mysql -u root -e 'create database octobox_test;'
 
-psql_command="ALTER USER ${DB_USERNAME} WITH SUPERUSER;"
-sudo -u postgres psql -c"$psql_command"
-wait
+# PostgreSQL
+echo '----------------------------------------'
+echo "sudo -u postgres createuser -d $USERNAME"
+sudo -u postgres createuser -d $USERNAME
 
-psql_command="CREATE DATABASE ${DB_NAME} WITH OWNER=${DB_USERNAME};"
-sudo -u postgres psql -c"$psql_command"
-wait
+echo '-----------------------------------'
+echo "Make the user $USERNAME a superuser"
+psql -c "ALTER USER $USERNAME WITH SUPERUSER;" -U postgres
 
-echo '----------------------------'
-echo 'END: setting up the database'
-echo '----------------------------'
+echo '----------------------------------------------------------'
+echo "psql -c 'create database octobox_development;' -U postgres"
+psql -c 'create database octobox_development;' -U postgres
+
+echo '---------------------------------------------------'
+echo "psql -c 'create database octobox_test;' -U postgres"
+psql -c 'create database octobox_test;' -U postgres
 
 sh kill_spring.sh
 sh all.sh
