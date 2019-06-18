@@ -37,8 +37,6 @@ class Notification < ApplicationRecord
 
   after_update :push_if_changed
 
-  paginates_per 20
-
   class << self
     def attributes_from_api_response(api_response)
       attrs = DownloadService::API_ATTRIBUTE_MAP.map do |attr, path|
@@ -65,6 +63,11 @@ class Notification < ApplicationRecord
   def state
     return unless display_subject?
     @state ||= subject.try(:state)
+  end
+
+  def draft?
+    return unless display_subject?
+    @draft ||= subject.try(:draft?)
   end
 
   def private?
@@ -176,7 +179,11 @@ class Notification < ApplicationRecord
 
   def upgrade_required?
     return nil unless repository.present?
-    repository.private? && !repository.required_plan_available?
+    repository.private? && !(repository.required_plan_available? || user.has_personal_plan?)
+  end
+
+  def prerender?
+    unread? and !['closed', 'merged'].include?(state) and !display_thread?
   end
 
   def subject_number
